@@ -17,13 +17,9 @@ def set():
     else:
         color_vals = [1-(float(request.args.get(k)/255)) for k in ['r', 'b', 'g']]
 
-
     pyblaster.set(pyblaster.RED_GPIO, color_vals[0])
     pyblaster.set(pyblaster.GREEN_GPIO, color_vals[1])
     pyblaster.set(pyblaster.BLUE_GPIO, color_vals[2])
-
-    print color_vals
-
     return 'OK'
 
 
