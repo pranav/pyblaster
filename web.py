@@ -2,7 +2,7 @@
 import pyblaster
 from flask import Flask
 from flask import request
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 
 
 @app.route("/set", methods=['GET'])

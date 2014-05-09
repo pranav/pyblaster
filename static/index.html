@@ -1,0 +1,30 @@
+<html>
+    <head>
+         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    </head>
+    <body>
+        Choose a color: <input type="color" id="color">
+    </body>
+    <script>
+    function hexToRgb(hex) {
+        // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
+        var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+        hex = hex.replace(shorthandRegex, function(m, r, g, b) {
+            return r + r + g + g + b + b;
+        });
+    
+        var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        return result ? {
+            r: Math.round(parseInt(result[1], 16)/255 * 2)/10,
+            g: Math.round(parseInt(result[2], 16)/255 * 2)/10,
+            b: Math.round(parseInt(result[3], 16)/255 * 2)/10
+        } : null;
+    }
+    $(document).ready(function(){
+        setInterval(function(){
+            rgb = hexToRgb($('#color').val())
+            $.get('/set', rgb)
+        }, 20);
+    })
+    </script>
+</html>
